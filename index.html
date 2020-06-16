@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Todo_list</title>
+</head>
+<body>
+<div class="app">
+    <h1>To do list</h1>
+    <button @click="createNote" class="create-new-button">Create New </button>
+    <div class="notes">
+        <nav>
+            <p v-if="!notes.length">No notes yet!</p>
+            <ul v-if="notes.length">
+                <li v-for="note in notes">
+                    <button @click="currentNote = note"
+                            @:class="{active: note === currentNote}"
+                    >{{note.title}}
+
+                    </button>
+                </li>
+            </ul>
+        </nav>
+        <div v-if="currentNote" class="curent-note">
+            <input v-model="currentNote.title" ref="noteTitle" placeholder="Note title">
+            <h2>{{currentNote.title}}</h2>
+            <textarea v-model="currentNote.contents" placeholder="Note content">
+            </textarea>
+            <p>{{currentNote.contents}}</p>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="script.js"></script>
+
+ </body>
+</html>
